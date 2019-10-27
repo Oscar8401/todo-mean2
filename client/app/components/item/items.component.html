@@ -1,0 +1,11 @@
+<form ngNoForm>
+  <input type="text" id="item" [(ngModel)]="newItem.title" class="input" placeholder="New Task...">
+  <span type="submit" (click)="addItem($event, newItem)" class="addBtn"><i>+</i></span>
+</form>
+<ul>
+<li *ngFor="let item of items | async | status: status">
+  <span (click)="removeItem(item._id)" class="close">x</span>
+  <span class="item-text" contentEditable="true" (keypress)="updateTitle($event, item)">{{ item.title }}</span>
+</li>
+</ul>
+<div style="color: red" *ngIf="errorMsg">{{errorMsg}}</div>
